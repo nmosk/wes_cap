@@ -5,12 +5,14 @@ This repo contains the code used in the UCSD Fire Defense project developed by N
 
 The project goal is to create a fire defense system that allows a sprinkler to be controlled wirelessly. The sprinkler will sit atop a roof and be actuated by a valve connected to a control computer. The control computer can be accessed wirelessly by wifi and also by a wireless remote control.
 
-##### Two files run the system:
+##### File Guide:
 
 | No.  | File name | Where it gets loaded | Purpose |
 | ---  | ---       | ---     | --- |
 |     1| server_with_remote.ino| Arduino R4 Wifi | Runs the web server, the remote receiver, and actuates the valve relay |
 |     2| transmitter_rev1_button_double-click.ino    | Arduino Nano | Runs the remote control signal transmitter | 
+|     3| Fire_suppression powerpoint    | N/a | Visual Background Info |
+|     4| test_archive folder    | N/a | Contains old code used to develop | 
 
 The server file (#1) is the main file that runs on the arduino.
 
