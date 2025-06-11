@@ -1,5 +1,3 @@
-# wes_cap
-# UC Fire Defense Code
 ## 2025 UCSD WES Capstone Project - N. Mosk
 
 ### Background: 
