@@ -11,7 +11,7 @@ The project goal is to create a fire defense system that allows a sprinkler to b
 | ---  | ---       | ---     | --- |
 |     1| server_with_remote.ino| Arduino R4 Wifi | Runs the web server, the remote receiver, and actuates the valve relay |
 |     2| transmitter_rev1_button_double-click.ino    | Arduino Nano | Runs the remote control signal transmitter | 
-|     3| Fire_suppression powerpoint    | N/a | Visual Background Info |
+|     3| "Fire suppression system 5-30.pptx"    | N/a | Visual Background Info |
 |     4| test_archive folder    | N/a | Contains old code used to develop | 
 
 The server file (#1) is the main file that runs on the arduino.
