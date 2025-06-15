@@ -24,6 +24,14 @@ The transmitter file (#2) is the file that runs on the arduino nano that powers 
 * If using web mode, you will need to add the SSID and password into the code. You will also need to access your router and set up port forwarding.
 * For file 2, nothing should need to be updated, just upload it to the Arduino nano inside the remote.
 
+##### Hardware details
+
+* Arduino R4 wifi is used as the main server board
+* DHT11 is used as a temperature and humidity sensor that would be attached to a roof tile
+* HC-12 is a wireless module used to facilitate comms between the remote and the server
+* Arduino Nano is used as the controller for the remote
+* 12V D batteries are used to power the hardware
+
 ##### Outline of server_with_remote.ino
 <details>
 <summary> server_with_remote.ino </summary>
@@ -55,3 +63,42 @@ The transmitter file (#2) is the file that runs on the arduino nano that powers 
 ### Link to Video of System:
 
 [![UC SD Fire Defense System](http://img.youtube.com/vi/_rKZSBtwn8Y/0.jpg)](https://www.youtube.com/watch?v=_rKZSBtwn8Y))
+
+#### How to use DHT11:
+
+To use DHT11 with Arduino, 
+1. Download the DHT libary (Sketch>Include Library>Manage Libaries and download DHT sensor library by Adafruit)
+2. Include the library in the program `#include <DHT.h>`
+3. I created macros for DHTPIN number to track the number of the digital pin that gets data from the sensor, and the DHTTYPE (DHT11)
+   `#define DHTTYPE DHT11`
+   `#define DHTPIN 6`
+4. Use a constructor to declare a dht object `DHT dht(DHTPIN,DHTTYPE);`
+5. Then, all you have to do is begin the dht, and collect the data with the following:
+  `dht.begin();`
+  `float temperature = dht.readTemperature();`
+  `float humidity = dht.readHumidity();`
+6. Obviously, the sensor will be wired with a wire to VCC (3-5v), ground, and the Digital pin specified earlier (6 in my case).
+
+It really is that simple.
+
+#### How to use HC-12:
+
+To use HC12 with Arduino, 
+1. The HC-12 module is compatible with the softwareSerial libary, so include the library in the program `#include <SoftwareSerial.h>`
+3. I created macros to track the number of the digital pin that serve as RX and TX, and Set for the HC12, although this is optional
+   `#define HC12_RX_PIN 2`
+   `#define HC12_TX_PIN 3`
+4. Declare a software serial object `SoftwareSerial HC12(3, 2);`
+5. Begin the serial console and the HC-12 serial connection , and collect the data with the following:
+  `Serial.begin(9600);`
+  `HC12.begin(9600);`
+6. Just to be safe, configure the HC-12 in default mode. To do this you have to toggle the Set pin low, then change the setting, then toggle the set pin back to high:
+  `digitalWrite(setPin, LOW);
+  HC12.write("AT+DEFAULT");
+  digitalWrite(setPin, HIGH);`
+8. Once again, the module will be wired with a wire to VCC (3-5v), ground, and the Digital pins for RX, TX, and Set.
+9. Then all you really need is to record incoming data to a buffer `incomingByte = HC12.read();` and that's it.
+
+
+
+
